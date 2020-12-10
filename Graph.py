@@ -25,7 +25,9 @@ class Graph:
         next_items.append(items) 
     
     if len(next_items) > 0:
-      print(vertex.id + ' goes to ' + str(next_items))
+      print(vertex.id + ' requires ' + str(next_items))
+    else:
+      print(f'{vertex.id} has no prerequsites.')
     for neighbor in vertex.neighbors:
       self.print_path(neighbor)
 

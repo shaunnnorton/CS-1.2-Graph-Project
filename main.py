@@ -16,7 +16,7 @@ def jsonToGraph(json_path):
             second_index = 0
             while new_graph.vertices[first_index].id is not course['name']:
                 first_index += 1
-            print(list_of_prerequisites)
+            #print(list_of_prerequisites)
             while new_graph.vertices[second_index].id != list_of_prerequisites[0]:
 
                 second_index += 1
@@ -28,19 +28,21 @@ def jsonToGraph(json_path):
 
 
 test = jsonToGraph("/Users/shaunnorton/dev/courses/CS1.2/Graph/test.json")
-print(len(test.vertices))
-print(test.print_path('FEW 2.3'))
+print('==========================================\n')
+print(f'The Graph has been created with {len(test.vertices)} verticies\n')
+print('==========================================\n')
 
-
-def numPrereqs(graph, course_name):
+def numPrereqsFirst(graph, course_name):
     vertex = None
-    for item in graph.vertices:
+    next_items = list()
+    for item in graph.vertices: #find the vertex matching the course_name 
         if item.id == course_name:
             vertex = item
-    if vertex == None:
+    
+    if vertex == None: #Check if a vertex was found.
         return('Item does not exist with that id.')
-    next_items = list()
-    if vertex.neighbors.keys():
+    
+    if vertex.neighbors.keys(): #If the vertex has neighbors append to next items list.
         for items in vertex.neighbors.keys():
             next_items.append(items)
 
@@ -49,5 +51,9 @@ def numPrereqs(graph, course_name):
     else:
         print(f'{course_name} has no prerequisites')
 
+def numPrereqs(graph,course_name):
+    graph.print_path(course_name)
 
-numPrereqs(test, 'CS 1.0')
+print('==========================================\n')
+numPrereqs(test, 'FEW 2.3') 
+print('\n==========================================\n')
